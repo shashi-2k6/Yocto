@@ -1,0 +1,7 @@
+### Starting build.
+# Target: main.ml.depends, tags: { package(llvm), package(llvm.analysis), package(llvm.bitwriter), extension:ml, file:main.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package llvm.bitwriter -package llvm.analysis -package llvm -modules main.ml > main.ml.depends
++ ocamlfind ocamldep -package llvm.bitwriter -package llvm.analysis -package llvm -modules main.ml > main.ml.depends
+ocamlfind: Package `llvm.bitwriter' not found
+Command exited with code 2.
+# Compilation unsuccessful.
