@@ -25,7 +25,11 @@ let rec codegen_expr (e: expr) =
                     let str s = define_global "buf" (const_stringz context s) the_module in
                     let int_spec = build_gep (str "%f\n") [| const_int 0; const_int 0 |] "float_spec" builder in
                 build_call callee [| int_spec;  (List.hd args) |] "" builder
-
+let ll codegen_expr(t: expr) =
+    match t with
+    | TypeKind.Char t -> const_char char_type r
+    | TypeKind.Tup t -> const_tup tup_type r
+    | TypeKind.Array t -> const_array arr_type r
             else
             build_call callee (Array.of_list args) "calltmp" builder
     | BinaryOperator (lhs, op, rhs) ->

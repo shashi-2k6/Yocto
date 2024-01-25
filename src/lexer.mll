@@ -25,5 +25,6 @@ rule token = parse
   | '{'                              { TLBRACE }
   | '}'                              { TRBRACE }
   | ','                              { TCOMMA }
+  / '^'                              { TCARET }
   | eof                              { EOF }
 

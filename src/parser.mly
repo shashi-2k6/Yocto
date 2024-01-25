@@ -7,6 +7,7 @@
 %token <string> TIDENTIFIER
 %token <string> TPLUS TMINUS TMUL TDIV
 %token TLPAREN TRPAREN TLBRACE TRBRACE
+%token <string> TCARET
 %token <string> TEQUAL TCEQ TCNE TCLT TCLE TCGT TCGE TCAND TCOR
 %token TCOMMA EOF
 
@@ -46,7 +47,11 @@ func_decl : ident ident TLPAREN func_decl_args TRPAREN block
                 {FunctionDeclaration($1, $2, $4, $6)}
     ;
 
-func_decl_args : {[]}
+func decl : ident ident TCARET func_decl_args TCARET block
+          {FunctionDeclaraion($1, $2, $4, $6)}
+    a
+
+    func_decl_args : {[]}
     | var_decl {[$1]}
     | func_decl_args TCOMMA var_decl {$1@[$3]}
     ;
