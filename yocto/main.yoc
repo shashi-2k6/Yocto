@@ -1,10 +1,10 @@
 fn calc(int a, int b){
     int n = a*b
-    print(n)
+    write(n)
 }
 
 fn main(){
-    int res = calc(6, 7)
-    print(res)
+    int res = calc(4, 6)
+    write(res)
     return 0
 }
