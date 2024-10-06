@@ -5,13 +5,12 @@ open Codegen
 open Expr
 
 let () =
-  if Array.length Sys.argv < 3 then (
-    Printf.eprintf "Usage: %s <input file> <output LLVM file>\n" Sys.argv.(0);
+  if Array.length Sys.argv < 2 then (
+    Printf.eprintf "Usage: %s <input file>\n" Sys.argv.(0);
     exit 1
   );
 
   let filename = Sys.argv.(1) in
-  let filename_llvm = Sys.argv.(2) in
 
   try
     let in_channel = open_in filename in
@@ -20,9 +19,14 @@ let () =
     let program_block = Parser.program Lexer.token lexbuf in
     close_in in_channel;
 
-    Codegen.codegen_main program_block filename_llvm;
+    Codegen.codegen_main program_block;
 
-    Printf.printf "Successfully generated LLVM IR in %s\n" filename_llvm
+    Printf.printf "Running program in %s\n" filename;
+
+    (* Execute the program by interpreting the AST *)
+    let _ = Codegen.interpreter [] program_block in
+    Printf.printf "Execution finished.\n"
+    
   with
   | Lexer.Eof -> Printf.eprintf "Error: Unexpected end of file\n"; exit 1
   | Parsing.Parse_error -> Printf.eprintf "Error: Parsing error in file %s\n" filename; exit 1

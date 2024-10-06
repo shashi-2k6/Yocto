@@ -1,0 +1,12 @@
+fn main() {
+    a = 10;
+    write(12);
+    return 0;
+}
+
+fn vars(){
+    result = 20;
+    write(result);
+    return 0;
+  }
+

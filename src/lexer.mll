@@ -2,6 +2,7 @@
   open Parser
   exception Eof
 }
+
 rule token = parse
     [' ' '\t' '\n']                     { token lexbuf }
     | ['a'-'z' 'A'-'Z' '_']['a'-'z' 'A'-'Z' '0'-'9' '_']* as str
@@ -9,7 +10,7 @@ rule token = parse
                                           | "fn" -> FN
                                           | "return" -> RETURN
                                           | "write" -> WRITE
-                                          | _ -> IDENTIFIER (str) }
+                                          | _ -> IDENTIFIER str }
   | ['0'-'9']+ as lxm                   { INT (int_of_string lxm) }
   | ['0'-'9']+'.'['0'-'9']* as lxm      { DOUBLE (float_of_string lxm) }
   | "="                                 { EQUAL }
@@ -31,5 +32,5 @@ rule token = parse
   | '}'                                 { RBRACE }
   | ','                                 { COMMA }
   | ';'                                 { SEMICOLON }
-  | '^'                                 { CARET }
   | eof                                 { EOF }
+

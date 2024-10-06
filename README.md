@@ -1,35 +1,35 @@
 # Yocto
 
-A custom programming language compiler built with OCaml and LLVM.
+A custom programming language compiler built with OCaml.
 
 ## Build & Run
 
 ```bash
 # Build
-ocamlbuild -use-ocamlfind -pkgs llvm -use-menhir main.byte
+ocamlbuild -use-ocamlfind -pkgs menhir,yojson main.byte
 
-# Run - WIP
+# Run -./main.byte <path to input file>
 ```
 
 ## Dependencies
 
 - OCaml
-- LLVM
 - Menhir
 
 ## Simple program using custom lang
 
 ```
 
-fn calc(int a, int b){
-int n = a*b
-write(n)
+fn main() {
+    a = 10;
+    write(12);
+    return 0;
 }
 
-fn main(){
-int res = calc(4, 6)
-write(res)
-return 0
-}
+fn vars(){
+    result = 20;
+    write(result);
+    return 0;
+  }
 
 ```
