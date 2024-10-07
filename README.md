@@ -8,7 +8,8 @@ A custom programming language compiler built with OCaml.
 # Build
 ocamlbuild -use-ocamlfind -pkgs menhir,yojson main.byte
 
-# Run -./main.byte <path to input file>
+# Run
+./main.byte <path to input file>
 ```
 
 ## Dependencies
