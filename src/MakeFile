@@ -1,0 +1,13 @@
+OCAMLBUILD=ocamlbuild
+SRC=src
+TARGET=main.byte
+
+.PHONY: all build clean
+
+all: build
+
+build:
+	$(OCAMLBUILD) -use-ocamlfind $(SRC)/$(TARGET)
+
+clean:
+	$(OCAMLBUILD) -clean
